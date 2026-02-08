@@ -1,0 +1,37 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Application",
+  "description": "Schema for a Universal Hiring Protocol (UHP) Application object.",
+  "type": "object",
+  "required": [
+    "applicationId",
+    "jobId",
+    "candidateId",
+    "state"
+  ],
+  "properties": {
+    "applicationId": {
+      "type": "string",
+      "description": "Unique identifier for the application."
+    },
+    "jobId": {
+      "type": "string",
+      "description": "Identifier of the job this application is for."
+    },
+    "candidateId": {
+      "type": "string",
+      "description": "Identifier of the candidate submitting the application."
+    },
+    "state": {
+      "type": "string",
+      "description": "Current state of the application.",
+      "enum": [
+        "Draft",
+        "Submitted",
+        "Screening",
+        "Closed"
+      ]
+    }
+  },
+  "additionalProperties": false
+}

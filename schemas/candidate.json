@@ -1,0 +1,48 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Candidate (Anonymized)",
+  "description": "Schema for an anonymized Universal Hiring Protocol (UHP) Candidate object.",
+  "type": "object",
+  "required": [
+    "candidateId",
+    "profile",
+    "visibility"
+  ],
+  "properties": {
+    "candidateId": {
+      "type": "string",
+      "description": "Unique identifier for the candidate."
+    },
+    "profile": {
+      "type": "object",
+      "description": "Anonymized profile information for the candidate.",
+      "required": [
+        "skills",
+        "experienceYears"
+      ],
+      "properties": {
+        "skills": {
+          "type": "array",
+          "description": "List of skills possessed by the candidate.",
+          "items": {
+            "type": "string"
+          }
+        },
+        "experienceYears": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Years of experience of the candidate."
+        }
+      },
+      "additionalProperties": false
+    },
+    "visibility": {
+      "type": "string",
+      "description": "Visibility level of the candidate profile. Must be 'Anonymized' for v0.1.",
+      "enum": [
+        "Anonymized"
+      ]
+    }
+  },
+  "additionalProperties": false
+}

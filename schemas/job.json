@@ -1,0 +1,44 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Job",
+  "description": "Schema for a Universal Hiring Protocol (UHP) Job object.",
+  "type": "object",
+  "required": [
+    "jobId",
+    "title",
+    "skills",
+    "location",
+    "visibility"
+  ],
+  "properties": {
+    "jobId": {
+      "type": "string",
+      "description": "Unique identifier for the job."
+    },
+    "title": {
+      "type": "string",
+      "description": "Title of the job position."
+    },
+    "skills": {
+      "type": "array",
+      "description": "List of required skills for the job.",
+      "items": {
+        "type": "string"
+      }
+    },
+    "location": {
+      "type": "string",
+      "description": "Geographical location of the job (e.g., 'Remote', 'New York, NY')."
+    },
+    "visibility": {
+      "type": "string",
+      "description": "Visibility level of the job posting.",
+      "enum": [
+        "Public",
+        "Anonymized",
+        "Restricted"
+      ]
+    }
+  },
+  "additionalProperties": false
+}
