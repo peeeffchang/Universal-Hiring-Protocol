@@ -42,6 +42,145 @@
       "enum": [
         "Anonymized"
       ]
+    },
+    "privacySettings": {
+      "type": "object",
+      "description": "Privacy settings for different categories of candidate data.",
+      "properties": {
+        "personalInformation": {
+          "type": "object",
+          "description": "Privacy settings for personal identifying information.",
+          "properties": {
+            "visibility": {
+              "type": "string",
+              "enum": ["Public", "EmployersOnly", "ConsentedParties", "Private"],
+              "default": "Private",
+              "description": "Visibility tier for personal information."
+            },
+            "purposeBindings": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "enum": ["Recruitment", "Application", "Interview", "BackgroundCheck"]
+              },
+              "description": "List of purposes for which this data can be used."
+            }
+          },
+          "required": ["visibility", "purposeBindings"],
+          "additionalProperties": false
+        },
+        "employmentHistory": {
+          "type": "object",
+          "description": "Privacy settings for employment history.",
+          "properties": {
+            "visibility": {
+              "type": "string",
+              "enum": ["Public", "EmployersOnly", "ConsentedParties", "Private"],
+              "default": "Private",
+              "description": "Visibility tier for employment history."
+            },
+            "purposeBindings": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "enum": ["Recruitment", "Application", "Interview"]
+              },
+              "description": "List of purposes for which this data can be used."
+            }
+          },
+          "required": ["visibility", "purposeBindings"],
+          "additionalProperties": false
+        },
+        "education": {
+          "type": "object",
+          "description": "Privacy settings for educational background.",
+          "properties": {
+            "visibility": {
+              "type": "string",
+              "enum": ["Public", "EmployersOnly", "ConsentedParties", "Private"],
+              "default": "Private",
+              "description": "Visibility tier for educational background."
+            },
+            "purposeBindings": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "enum": ["Recruitment", "Application"]
+              },
+              "description": "List of purposes for which this data can be used."
+            }
+          },
+          "required": ["visibility", "purposeBindings"],
+          "additionalProperties": false
+        },
+        "skills": {
+          "type": "object",
+          "description": "Privacy settings for skills.",
+          "properties": {
+            "visibility": {
+              "type": "string",
+              "enum": ["Public", "EmployersOnly", "ConsentedParties", "Private"],
+              "default": "Public",
+              "description": "Visibility tier for skills information."
+            },
+            "purposeBindings": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "enum": ["Recruitment", "Application"]
+              },
+              "description": "List of purposes for which this data can be used."
+            }
+          },
+          "required": ["visibility", "purposeBindings"],
+          "additionalProperties": false
+        },
+        "sensitiveInformation": {
+          "type": "object",
+          "description": "Privacy settings for sensitive personal information.",
+          "properties": {
+            "visibility": {
+              "type": "string",
+              "enum": ["Private", "ConsentedParties"],
+              "default": "Private",
+              "description": "Visibility tier for sensitive information."
+            },
+            "purposeBindings": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "enum": ["BackgroundCheck", "LegalCompliance"]
+              },
+              "description": "List of purposes for which this data can be used."
+            }
+          },
+          "required": ["visibility", "purposeBindings"],
+          "additionalProperties": false
+        }
+      },
+      "additionalProperties": false,
+      "default": {
+        "personalInformation": {
+          "visibility": "Private",
+          "purposeBindings": []
+        },
+        "employmentHistory": {
+          "visibility": "Private",
+          "purposeBindings": []
+        },
+        "education": {
+          "visibility": "Private",
+          "purposeBindings": []
+        },
+        "skills": {
+          "visibility": "Public",
+          "purposeBindings": []
+        },
+        "sensitiveInformation": {
+          "visibility": "Private",
+          "purposeBindings": []
+        }
+      }
     }
   },
   "additionalProperties": false

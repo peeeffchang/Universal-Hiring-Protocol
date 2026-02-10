@@ -1,0 +1,30 @@
+{
+  "candidateId": "cand-987",
+  "profile": {
+    "skills": ["Project Management", "Agile Methodologies", "Leadership"],
+    "experienceYears": 10
+  },
+  "visibility": "Anonymized",
+  "privacySettings": {
+    "personalInformation": {
+      "visibility": "EmployersOnly",
+      "purposeBindings": ["Recruitment", "Application"]
+    },
+    "employmentHistory": {
+      "visibility": "ConsentedParties",
+      "purposeBindings": ["Application", "BackgroundCheck"]
+    },
+    "education": {
+      "visibility": "Public",
+      "purposeBindings": ["Recruitment", "Application"]
+    },
+    "skills": {
+      "visibility": "Public",
+      "purposeBindings": ["Recruitment", "Application"]
+    },
+    "sensitiveInformation": {
+      "visibility": "Private",
+      "purposeBindings": []
+    }
+  }
+}
