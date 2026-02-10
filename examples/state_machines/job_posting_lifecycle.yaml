@@ -1,0 +1,60 @@
+metadata:
+  name: job_posting_lifecycle
+  description: Example state machine for the lifecycle of a job posting.
+  initial_state: draft
+
+states:
+  - name: draft
+    description: The job posting is being created and is not yet visible.
+    transitions:
+      - event: publish_job
+        target: published
+      - event: discard_draft
+        target: discarded
+
+  - name: published
+    description: The job posting is active and visible to candidates.
+    transitions:
+      - event: close_job
+        target: closed
+      - event: archive_job
+        target: archived
+      - event: unpublish_job
+        target: unpublished
+      - event: update_job
+        target: published
+
+  - name: closed
+    description: Applications are no longer accepted for this job posting.
+    transitions:
+      - event: archive_job
+        target: archived
+      - event: reopen_job
+        target: published
+      - event: delete_job
+        target: deleted
+
+  - name: archived
+    description: The job posting is no longer active but retained for historical records.
+    transitions:
+      - event: unarchive_job
+        target: published
+        conditions:
+          - condition_type: "time_limit"
+            params: { "days": 365 }
+
+  - name: unpublished
+    description: The job posting is temporarily hidden from public view.
+    transitions:
+      - event: publish_job
+        target: published
+      - event: close_job
+        target: closed
+
+  - name: discarded
+    description: The draft job posting was not published and discarded.
+    transitions: []
+
+  - name: deleted
+    description: The job posting has been permanently removed.
+    transitions: []

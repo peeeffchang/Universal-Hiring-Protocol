@@ -1,0 +1,49 @@
+metadata:
+  name: interview_scheduling
+  description: Example state machine for the interview scheduling process.
+  initial_state: proposed
+
+states:
+  - name: proposed
+    description: An interview has been proposed to the candidate.
+    transitions:
+      - event: accept_proposal
+        target: confirmed
+      - event: decline_proposal
+        target: declined_proposal
+      - event: counter_proposal
+        target: counter_proposed
+      - event: cancel_proposal
+        target: cancelled
+
+  - name: confirmed
+    description: The interview schedule has been mutually agreed upon.
+    transitions:
+      - event: conduct_interview
+        target: completed
+      - event: reschedule_interview
+        target: proposed
+      - event: cancel_interview
+        target: cancelled
+
+  - name: completed
+    description: The interview has been conducted.
+    transitions: []
+
+  - name: cancelled
+    description: The interview was cancelled.
+    transitions: []
+
+  - name: declined_proposal
+    description: The candidate declined the proposed interview time.
+    transitions: []
+
+  - name: counter_proposed
+    description: The candidate made a counter-proposal for the interview time.
+    transitions:
+      - event: accept_counter_proposal
+        target: confirmed
+      - event: reject_counter_proposal
+        target: declined_proposal
+      - event: cancel_proposal
+        target: cancelled

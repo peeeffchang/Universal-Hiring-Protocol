@@ -1,0 +1,85 @@
+metadata:
+  name: candidate_application_process
+  description: Example state machine for the candidate application lifecycle.
+  initial_state: applied
+
+states:
+  - name: applied
+    description: Candidate has submitted an application.
+    transitions:
+      - event: review_application
+        target: in_review
+      - event: withdraw_application
+        target: withdrawn
+
+  - name: in_review
+    description: Application is being reviewed by the hiring team.
+    transitions:
+      - event: application_reviewed
+        target: reviewed
+      - event: reject_application
+        target: rejected
+      - event: withdraw_application
+        target: withdrawn
+
+  - name: reviewed
+    description: Application has been reviewed. Awaiting decision for interview or rejection.
+    transitions:
+      - event: invite_to_interview
+        target: interview_scheduled
+      - event: reject_application
+        target: rejected
+      - event: withdraw_application
+        target: withdrawn
+
+  - name: interview_scheduled
+    description: An interview has been scheduled with the candidate.
+    transitions:
+      - event: interview_completed
+        target: interviewed
+      - event: reschedule_interview
+        target: interview_scheduled
+      - event: cancel_interview
+        target: cancelled_interview
+      - event: withdraw_application
+        target: withdrawn
+
+  - name: interviewed
+    description: Candidate has completed all interviews. Awaiting final decision.
+    transitions:
+      - event: extend_offer
+        target: offer_extended
+      - event: reject_application
+        target: rejected
+      - event: withdraw_application
+        target: withdrawn
+
+  - name: offer_extended
+    description: A job offer has been extended to the candidate.
+    transitions:
+      - event: accept_offer
+        target: hired
+      - event: decline_offer
+        target: offer_declined
+      - event: withdraw_application
+        target: withdrawn
+
+  - name: hired
+    description: Candidate has accepted the job offer and is considered hired.
+    transitions: []
+
+  - name: rejected
+    description: Candidate's application has been rejected.
+    transitions: []
+
+  - name: withdrawn
+    description: Candidate has withdrawn their application.
+    transitions: []
+
+  - name: cancelled_interview
+    description: Interview was cancelled.
+    transitions: []
+
+  - name: offer_declined
+    description: Candidate has declined the job offer.
+    transitions: []
