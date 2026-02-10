@@ -1,0 +1,8 @@
+{
+  "track_id": "formalize_protocol_capabilities_20260210",
+  "type": "feature",
+  "status": "new",
+  "created_at": "2026-02-10T00:00:00Z",
+  "updated_at": "2026-02-10T00:00:00Z",
+  "description": "Formalize the capability discovery schema, including API endpoints, functionalities, and data schemas, accessible via a dedicated /capabilities endpoint."
+}

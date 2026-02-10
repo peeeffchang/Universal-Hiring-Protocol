@@ -1,0 +1,59 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "UHP Capability Discovery Document",
+  "description": "Describes the capabilities of a UHP-compliant service.",
+  "type": "object",
+  "properties": {
+    "serviceName": {
+      "type": "string",
+      "description": "The name of the UHP-compliant service."
+    },
+    "version": {
+      "type": "string",
+      "description": "The version of the service implementing these capabilities."
+    },
+    "capabilities": {
+      "type": "array",
+      "description": "A list of capabilities provided by the service.",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "A unique identifier for the capability."
+          },
+          "name": {
+            "type": "string",
+            "description": "A human-readable name for the capability."
+          },
+          "description": {
+            "type": "string",
+            "description": "A detailed description of what the capability does."
+          },
+          "apiEndpoint": {
+            "type": "string",
+            "format": "uri",
+            "description": "The URI path for the API endpoint associated with this capability (e.g., /jobs)."
+          },
+          "httpMethod": {
+            "type": "string",
+            "enum": ["GET", "POST", "PUT", "DELETE", "PATCH"],
+            "description": "The HTTP method used to interact with this capability."
+          },
+          "requestSchema": {
+            "type": "string",
+            "format": "uri",
+            "description": "URI reference to the JSON Schema for the request payload (if applicable)."
+          },
+          "responseSchema": {
+            "type": "string",
+            "format": "uri",
+            "description": "URI reference to the JSON Schema for the response payload (if applicable)."
+          }
+        },
+        "required": ["id", "name", "apiEndpoint", "httpMethod"]
+      }
+    }
+  },
+  "required": ["serviceName", "version", "capabilities"]
+}

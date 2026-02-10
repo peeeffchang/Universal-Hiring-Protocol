@@ -74,7 +74,7 @@ Unlike traditional HR APIs, UHP is designed to be *interpretable and reasoned ov
 
 - Intent-based action envelope (`ApplyForJob`, `ScheduleInterview`, etc.)
 - Explicit state machines for tracking workflow progression
-- Machine-readable capability discovery
+- Machine-readable capability discovery (see [Capability Discovery Endpoint](docs/capabilities_endpoint.md))
 - Privacy-aware consensual access patterns
 
 ---

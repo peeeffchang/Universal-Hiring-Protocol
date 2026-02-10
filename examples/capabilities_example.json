@@ -1,0 +1,23 @@
+{
+  "serviceName": "UHP Mock Service",
+  "version": "1.0.0",
+  "capabilities": [
+    {
+      "id": "get-jobs",
+      "name": "Retrieve Job Listings",
+      "description": "Allows AI agents to retrieve a list of available job postings.",
+      "apiEndpoint": "/jobs",
+      "httpMethod": "GET",
+      "responseSchema": "https://example.com/schemas/job.json"
+    },
+    {
+      "id": "post-candidate",
+      "name": "Submit Candidate Information",
+      "description": "Enables AI agents to submit new candidate profiles.",
+      "apiEndpoint": "/candidates",
+      "httpMethod": "POST",
+      "requestSchema": "https://example.com/schemas/candidate.json",
+      "responseSchema": "https://example.com/schemas/candidate_response.json"
+    }
+  ]
+}
